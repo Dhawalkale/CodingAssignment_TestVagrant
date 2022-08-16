@@ -1,0 +1,51 @@
+package CodingAssignment;
+
+import static io.restassured.RestAssured.given;
+
+import java.util.jar.Attributes.Name;
+
+import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
+
+public class CodingAssignment_TestVagrant {
+	
+	void FourForeignPlayers()
+	{
+            String url="https://gist.github.com/kumarpani/1e759f27ae302be92ad51ec09955e765";
+            String Resources="https://gist.github.com/kumarpani/1e759f27ae302be92ad51ec09955e765/raw/184cef7125e6ef5a774e60de31479bb9b2884cb5/TeamRCB.json";
+	    RestAssured.baseURI=url;
+	    String res=given().when().get(Resources).then().extract().response().asString();
+	    JsonPath Js=new JsonPath(res);
+	    String FirstPlayer=Js.getString("player.0.name");
+	    System.out.println("Faf Du Plessis");
+	       
+	    String SecondPlayer=Js.getString("player.2.name");
+	    System.out.println("Glenn Maxwell");
+	     
+	    String ThirdPlayer=Js.getString("player.5.name");
+	    System.out.println("Wanindu Hasaranga");
+	    
+	    String FourthPlayer=Js.getString("player.9.name");
+	    System.out.println("Josh Hazlewood");
+     }
+	
+	void Wicketkeeper()
+	{
+	    String url="https://gist.github.com/kumarpani/1e759f27ae302be92ad51ec09955e765";
+            String Resources="https://gist.github.com/kumarpani/1e759f27ae302be92ad51ec09955e765/raw/184cef7125e6ef5a774e60de31479bb9b2884cb5/TeamRCB.json";
+	    RestAssured.baseURI=url;
+	    String res=given().when().get(Resources).then().extract().response().asString();
+	    JsonPath Js=new JsonPath(res);
+	    String player=Js.getString("player.6.name");
+	    System.out.println("Dinesh Karthik");
+     }
+	
+	
+	public static void main(String[] args) {
+		CodingAssignment_TestVagrant obj=new CodingAssignment_TestVagrant();
+		obj.FourForeignPlayers();
+		obj.Wicketkeeper();
+
+	}
+
+}
